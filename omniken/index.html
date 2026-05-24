@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omniken — The Infinite Zero Context Engine</title>
+  <meta name="description" content="Omniken compresses AI prompts by 40-60%, cutting API token costs across 6 major models. Multi-modal optimization for text, image, audio, video. Recover annual plan costs in under 40 days." />
+  <meta property="og:title" content="Omniken — The Infinite Zero Context Engine" />
+  <meta property="og:description" content="Context token compression engine. 40-60% reduction. Zero functional loss. Multi-modal support." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232997FF'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white'>♾</text></svg>" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+
+<div class="desk-scene">
+
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="desk-lamp"></div>
+
+  <div class="desk-top">
+
+    <nav class="nav" id="nav" role="navigation" aria-label="Primary navigation">
+      <div class="nav-brand">
+        <div class="nav-logo" aria-hidden="true">♾</div>
+        <div>
+          <div class="nav-title">Omniken</div>
+          <div class="nav-subtitle">ZERO_CONTEXT_v1.1</div>
+        </div>
+      </div>
+      <div class="nav-links" role="list">
+        <button class="nav-link" onclick="scrollTo('engine-section')" role="listitem">Engine</button>
+        <button class="nav-link" onclick="scrollTo('flow-section')" role="listitem">Pipeline</button>
+        <button class="nav-link" onclick="scrollTo('calculator-section')" role="listitem">Calculator</button>
+        <button class="nav-link" onclick="scrollTo('pricing-section')" role="listitem">Pricing</button>
+        <button class="nav-link" onclick="scrollTo('physics-section')" role="listitem">Sandbox</button>
+      </div>
+      <button class="nav-cta btn" onclick="scrollTo('pricing-section')" aria-label="Get started with Omniken">
+        Get Started →
+      </button>
+    </nav>
+
+    <div class="app-wrapper">
+
+      <!-- ── Terminal Mascot Header ─────────── -->
+      <div class="terminal-header fade-in">
+        <svg class="mascot-invader" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g class="invader-grid">
+            <rect x="16" y="12" width="8" height="8" rx="1"/>
+            <rect x="28" y="12" width="8" height="8" rx="1"/>
+            <rect x="44" y="12" width="8" height="8" rx="1"/>
+            <rect x="56" y="12" width="8" height="8" rx="1"/>
+            <rect x="12" y="24" width="8" height="8" rx="1"/>
+            <rect x="22" y="24" width="8" height="8" rx="1"/>
+            <rect x="32" y="24" width="8" height="8" rx="1"/>
+            <rect x="40" y="24" width="8" height="8" rx="1"/>
+            <rect x="50" y="24" width="8" height="8" rx="1"/>
+            <rect x="60" y="24" width="8" height="8" rx="1"/>
+            <rect x="16" y="36" width="48" height="8" rx="1"/>
+            <rect x="8" y="44" width="12" height="8" rx="1"/>
+            <rect x="24" y="44" width="8" height="8" rx="1"/>
+            <rect x="48" y="44" width="8" height="8" rx="1"/>
+            <rect x="60" y="44" width="12" height="8" rx="1"/>
+            <rect x="8" y="52" width="8" height="8" rx="1"/>
+            <rect x="64" y="52" width="8" height="8" rx="1"/>
+            <rect x="20" y="52" width="8" height="8" rx="1"/>
+            <rect x="52" y="52" width="8" height="8" rx="1"/>
+            <rect x="28" y="52" width="24" height="8" rx="1"/>
+          </g>
+        </svg>
+        <div style="flex:1;min-width:0;">
+          <div class="terminal-prompt">$> ./omniken --version</div>
+          <div class="terminal-command">
+            Omniken CLI <span>v1.1.0</span> — Zero Context Engine
+            <span class="terminal-cursor"></span>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">$></span>
+            <span class="output">Loaded [core] · [pass1 heuristic] · [pass2 shorthand] · [6 models] · [multi-modal]</span>
+          </div>
+          <div class="terminal-line">
+            <span class="prompt">$></span>
+            <span class="output">Status: <span style="color:var(--c-green)">● running</span> · pid: omniken-ctx-001</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Hero ───────────────────────────── -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-badge fade-in">LIVE · Zero Context Engine</div>
+
+        <h1 class="hero-h1 fade-in fade-in-delay-1" id="hero-heading">
+          The Infinite<br /><span>Zero Context</span><br />Engine
+        </h1>
+
+        <p class="hero-sub fade-in fade-in-delay-2">
+          Omniken strips 40-60% of redundant tokens from your AI prompts in two deterministic passes
+          — preserving 100% fidelity for code, math, and JSON while slashing your API bill.
+          Supports text, image, audio, and video optimization.
+        </p>
+
+        <div class="hero-actions fade-in fade-in-delay-3">
+          <button class="btn btn-primary" onclick="scrollTo('engine-section')" aria-label="Try the context engine">
+            ⚡ Try Engine Free
+          </button>
+          <button class="btn btn-secondary" onclick="scrollTo('calculator-section')" aria-label="See API cost savings calculator">
+            $ Calculate Savings
+          </button>
+        </div>
+      </section>
+
+      <!-- ── Stats Strip ────────────────────── -->
+      <div class="stat-strip fade-in" role="list" aria-label="Key metrics">
+        <div class="stat-item" role="listitem">
+          <div class="stat-value" id="stat-reduction">47%</div>
+          <div class="stat-label">Avg Token Reduction</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Processing Passes</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Code/Math Preserved</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-value" id="stat-payback">&lt;40</div>
+          <div class="stat-label">Days to Break Even</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Modal Types</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Models Supported</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           PIPELINE FLOW DIAGRAM
+      ══════════════════════════════════════════ -->
+      <section id="flow-section" class="flow-section" aria-labelledby="flow-heading">
+        <div class="section-header">
+          <div class="section-label">// PROMPT PIPELINE</div>
+          <h2 class="section-title" id="flow-heading">Optimization Flow</h2>
+          <p class="section-desc">Two-pass deterministic engine — protected blocks reinjected verbatim.</p>
+        </div>
+
+        <div class="flow-diagram" id="flowDiagram">
+          <div class="flow-step" data-step="1">
+            <div class="flow-node" id="flow-node-1">
+              <span class="step-num">Step 1</span>
+              Raw Prompt Input
+              <span class="step-desc">User paste or MCP call</span>
+            </div>
+          </div>
+
+          <div class="flow-connector">
+            <svg viewBox="0 0 60 24">
+              <line class="flow-line" x1="0" y1="12" x2="60" y2="12"/>
+              <circle class="flow-dot flow-dot-anim" cx="0" cy="12" fill="#2997FF" r="3"/>
+            </svg>
+          </div>
+
+          <div class="flow-step" data-step="2">
+            <div class="flow-node" id="flow-node-2">
+              <span class="step-num">Step 2</span>
+              Heuristic Strip
+              <span class="step-desc">Pass 1 — Strips greetings, sycophancy, filler</span>
+            </div>
+          </div>
+
+          <div class="flow-connector">
+            <svg viewBox="0 0 60 24">
+              <line class="flow-line" x1="0" y1="12" x2="60" y2="12"/>
+              <circle class="flow-dot flow-dot-anim" cx="0" cy="12" fill="#64D2FF" r="3"/>
+            </svg>
+          </div>
+
+          <div class="flow-step" data-step="3">
+            <div class="flow-node" id="flow-node-3">
+              <span class="step-num">Step 3</span>
+              Shorthand Pack
+              <span class="step-desc">Pass 2 — Terse directives, abbreviation</span>
+            </div>
+          </div>
+
+          <div class="flow-connector">
+            <svg viewBox="0 0 60 24">
+              <line class="flow-line" x1="0" y1="12" x2="60" y2="12"/>
+              <circle class="flow-dot flow-dot-anim" cx="0" cy="12" fill="#2997FF" r="3"/>
+            </svg>
+          </div>
+
+          <div class="flow-step" data-step="4">
+            <div class="flow-node" id="flow-node-4">
+              <span class="step-num">Step 4</span>
+              Protected Registry
+              <span class="step-desc">Code/Math/JSON reinjection</span>
+            </div>
+          </div>
+
+          <div class="flow-connector">
+            <svg viewBox="0 0 60 24">
+              <line class="flow-line" x1="0" y1="12" x2="60" y2="12"/>
+              <circle class="flow-dot flow-dot-anim" cx="0" cy="12" fill="#64D2FF" r="3"/>
+            </svg>
+          </div>
+
+          <div class="flow-step" data-step="5">
+            <div class="flow-node" id="flow-node-5">
+              <span class="step-num">Step 5</span>
+              Compact Output
+              <span class="step-desc">40-60% smaller, 100% fidelity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           ENGINE WORKSPACE
+      ══════════════════════════════════════════ -->
+      <section id="engine-section" aria-labelledby="engine-heading">
+        <div class="section-header">
+          <div class="section-label">// CORE ENGINE</div>
+          <h2 class="section-title" id="engine-heading">Context Compression Workspace</h2>
+          <p class="section-desc">
+            Paste any AI prompt. Pass 1 strips fluff. Pass 2 packs semantics into dense AI shorthand.
+            Protected blocks (code, math, JSON) are untouched. Multi-modal estimation available.
+          </p>
+        </div>
+
+        <div class="engine-grid">
+          <div class="card glass-card-float">
+            <div class="pane-label">
+              <span class="dot"></span>
+              INPUT PROMPT
+            </div>
+            <textarea
+              class="engine-textarea"
+              id="inputPrompt"
+              placeholder="Paste your AI prompt here...
+
+Examples:
+• Conversational text with greetings and fluff
+• Technical prompts with code blocks (preserved)
+• Math equations like $E = mc^2$ (preserved)
+• JSON payloads {&quot;key&quot;: &quot;value&quot;} (preserved)
+
+The engine will compress your prompt by 40-60% while maintaining 100% semantic fidelity."
+              aria-label="Input prompt for compression"
+              spellcheck="false"
+            ></textarea>
+
+            <div class="engine-controls">
+              <button class="btn btn-primary" id="optimizeBtn" onclick="runOptimizer()" aria-label="Run context optimizer">
+                ⚡ Optimize
+              </button>
+              <button class="btn btn-secondary" id="pass1Btn" onclick="runPass1Only()" aria-label="Run pass 1 heuristic only">
+                Pass 1 Only
+              </button>
+              <button class="btn btn-ghost" id="clearBtn" onclick="clearAll()" aria-label="Clear all fields">
+                Clear
+              </button>
+              <button class="btn btn-secondary" id="demoBtn" onclick="loadDemo()" aria-label="Load demo prompt">
+                Load Demo
+              </button>
+            </div>
+
+            <div class="metrics-bar" aria-label="Input metrics">
+              <div class="metric-chip">
+                <span class="metric-chip-val" id="inputTokens">0</span>
+                <span class="metric-chip-key">INPUT TOKENS</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip-val" id="inputChars">0</span>
+                <span class="metric-chip-key">CHARACTERS</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip-val" id="inputWords">0</span>
+                <span class="metric-chip-key">WORDS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card glass-card-float">
+            <div class="pane-label">
+              <span class="dot green"></span>
+              COMPRESSED OUTPUT
+            </div>
+            <div
+              class="engine-output"
+              id="outputPrompt"
+              role="region"
+              aria-label="Compressed output"
+              aria-live="polite"
+            ><span style="color: var(--c-text-muted); font-size:12px;">// Compressed output will appear here...</span></div>
+
+            <div class="engine-controls">
+              <button class="btn btn-secondary" id="copyBtn" onclick="copyOutput()" aria-label="Copy compressed output">
+                &gt; Copy Output
+              </button>
+              <div class="toggle-row" id="gravityToggle" onclick="toggleGravity()" role="switch" aria-checked="false" tabindex="0" aria-label="Toggle gravity physics sandbox">
+                <div class="toggle" id="gravitySwitch"></div>
+                <span>Gravitational Metrics</span>
+              </div>
+            </div>
+
+            <div class="metrics-bar" aria-label="Output metrics">
+              <div class="metric-chip">
+                <span class="metric-chip-val green" id="outputTokens">0</span>
+                <span class="metric-chip-key">OUTPUT TOKENS</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip-val green" id="savedTokens">0</span>
+                <span class="metric-chip-key">TOKENS SAVED</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip-val amber" id="reductionPct">0%</span>
+                <span class="metric-chip-key">REDUCTION</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip-val green" id="costSaved">$0.00</span>
+                <span class="metric-chip-key">EST. SAVINGS/CALL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap;">
+          <div class="card" style="flex:1; padding:16px 20px; min-width:220px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <div style="font-size:11px; font-weight:700; font-family:var(--font-mono); color:var(--c-accent-1);">PASS 1 — HEURISTIC ENGINE</div>
+              <div id="pass1Status" style="width:7px;height:7px;border-radius:50%;background:var(--c-text-muted);"></div>
+            </div>
+            <div style="font-size:12px; color:var(--c-text-secondary); line-height:1.6;">
+              Strips conversational fluff, greetings, and redundant whitespace. Preserves code fences <code>```</code>, math <code>$…$</code>, and JSON <code>{}</code> blocks with zero modification.
+            </div>
+            <div id="pass1Stats" style="font-size:11px; font-family:var(--font-mono); color:var(--c-text-muted); margin-top:8px;">idle</div>
+          </div>
+          <div class="card" style="flex:1; padding:16px 20px; min-width:220px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <div style="font-size:11px; font-weight:700; font-family:var(--font-mono); color:var(--c-accent-2);">PASS 2 — SHORTHAND ENGINE</div>
+              <div id="pass2Status" style="width:7px;height:7px;border-radius:50%;background:var(--c-text-muted);"></div>
+            </div>
+            <div style="font-size:12px; color:var(--c-text-secondary); line-height:1.6;">
+              Packs conversational paragraphs into high-density semantic AI shorthand. Reduces verbose instructions to terse directives without semantic loss.
+            </div>
+            <div id="pass2Stats" style="font-size:11px; font-family:var(--font-mono); color:var(--c-text-muted); margin-top:8px;">idle</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           MODEL COMPARISON TABLE (EXPANDED — 6 MODELS)
+      ══════════════════════════════════════════ -->
+      <section style="margin: 64px 0;" aria-labelledby="model-table-heading">
+        <div class="section-header">
+          <div class="section-label">// MODEL PRICING MATRIX</div>
+          <h2 class="section-title" id="model-table-heading">Cross-Model Cost Analysis</h2>
+          <p class="section-desc">Real pricing data for 6 major models. See exactly how Omniken compression maps to dollar savings.</p>
+        </div>
+        <div class="model-table-wrap">
+          <table class="model-table" id="modelTable" aria-label="AI model pricing and savings comparison">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Input Cost / 1M tk</th>
+                <th scope="col">Overhead</th>
+                <th scope="col">Effective Rate</th>
+                <th scope="col">Avg Compression</th>
+                <th scope="col">Savings / 1M Calls</th>
+                <th scope="col">Annual ROI</th>
+              </tr>
+            </thead>
+            <tbody id="modelTableBody">
+              <tr>
+                <td class="model-name">GPT-4o</td>
+                <td>$2.50</td>
+                <td>0%</td>
+                <td>$2.50</td>
+                <td>47%</td>
+                <td class="highlight" id="gpt4o-savings">—</td>
+                <td class="highlight" id="gpt4o-roi">—</td>
+              </tr>
+              <tr>
+                <td class="model-name">Claude 3.5 Sonnet</td>
+                <td>$3.00</td>
+                <td>12%</td>
+                <td>$3.36</td>
+                <td>47%</td>
+                <td class="highlight" id="claude-savings">—</td>
+                <td class="highlight" id="claude-roi">—</td>
+              </tr>
+              <tr>
+                <td class="model-name">Gemini 1.5 Pro</td>
+                <td>$1.25</td>
+                <td>0%</td>
+                <td>$1.25</td>
+                <td>47%</td>
+                <td class="highlight" id="gemini-savings">—</td>
+                <td class="highlight" id="gemini-roi">—</td>
+              </tr>
+              <tr>
+                <td class="model-name">Llama 3 70B</td>
+                <td>$0.60</td>
+                <td>0%</td>
+                <td>$0.60</td>
+                <td>47%</td>
+                <td class="highlight" id="llama-savings">—</td>
+                <td class="highlight" id="llama-roi">—</td>
+              </tr>
+              <tr>
+                <td class="model-name">Claude 3 Opus</td>
+                <td>$15.00</td>
+                <td>0%</td>
+                <td>$15.00</td>
+                <td>47%</td>
+                <td class="highlight" id="opus-savings">—</td>
+                <td class="highlight" id="opus-roi">—</td>
+              </tr>
+              <tr>
+                <td class="model-name">GPT-4</td>
+                <td>$30.00</td>
+                <td>0%</td>
+                <td>$30.00</td>
+                <td>47%</td>
+                <td class="highlight" id="gpt4-savings">—</td>
+                <td class="highlight" id="gpt4-roi">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           API COST OFFSET CALCULATOR
+      ══════════════════════════════════════════ -->
+      <section id="calculator-section" class="calc-section" aria-labelledby="calc-heading">
+        <div class="section-header">
+          <div class="section-label">// API COST OFFSET CALCULATOR</div>
+          <h2 class="section-title" id="calc-heading">Real-Time Payback Analysis</h2>
+          <p class="section-desc">
+            Adjust your usage parameters. Watch the math validate your investment in real-time.
+          </p>
+        </div>
+
+        <div class="calc-grid">
+          <div class="card">
+            <div style="margin-bottom:20px;">
+              <div class="pane-label" style="margin-bottom:16px;">
+                <span class="dot"></span> USAGE PARAMETERS
+              </div>
+
+              <div class="calc-inputs">
+                <div class="input-group">
+                  <label class="input-label" for="dailyCalls">Daily API Calls</label>
+                  <div class="range-wrap">
+                    <input type="range" class="range-input" id="dailyCalls" min="100" max="50000" value="5000" step="100" oninput="updateCalculator()" aria-label="Daily API calls">
+                    <span class="range-val" id="dailyCallsVal">5,000</span>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label class="input-label" for="avgTokens">Avg Tokens / Prompt</label>
+                  <div class="range-wrap">
+                    <input type="range" class="range-input" id="avgTokens" min="100" max="8000" value="1200" step="50" oninput="updateCalculator()" aria-label="Average tokens per prompt">
+                    <span class="range-val" id="avgTokensVal">1,200</span>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label class="input-label" for="compressionRate">Compression Rate</label>
+                  <div class="range-wrap">
+                    <input type="range" class="range-input" id="compressionRate" min="20" max="65" value="47" step="1" oninput="updateCalculator()" aria-label="Compression rate percentage">
+                    <span class="range-val" id="compressionRateVal">47%</span>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label class="input-label">Primary Model</label>
+                  <div class="model-selector" role="group" aria-label="Select primary model">
+                    <button class="model-chip active" id="chip-gpt4o" onclick="selectModel('gpt4o')" aria-pressed="true">GPT-4o</button>
+                    <button class="model-chip" id="chip-claude" onclick="selectModel('claude')" aria-pressed="false">Claude 3.5</button>
+                    <button class="model-chip" id="chip-gemini" onclick="selectModel('gemini')" aria-pressed="false">Gemini 1.5</button>
+                    <button class="model-chip" id="chip-llama" onclick="selectModel('llama')" aria-pressed="false">Llama 3</button>
+                    <button class="model-chip" id="chip-opus" onclick="selectModel('opus')" aria-pressed="false">Opus</button>
+                    <button class="model-chip" id="chip-gpt4" onclick="selectModel('gpt4')" aria-pressed="false">GPT-4</button>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label class="input-label" for="planTier">Plan Tier</label>
+                  <div class="model-selector" role="group" aria-label="Select plan tier">
+                    <button class="model-chip active" id="chip-founder-plan" onclick="selectPlan('founder')" aria-pressed="true">Founder $89/yr</button>
+                    <button class="model-chip" id="chip-elite-plan" onclick="selectPlan('elite')" aria-pressed="false">Elite $179/yr</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="pane-label" style="margin-bottom:16px;">
+              <span class="dot green"></span> SAVINGS PROJECTION
+            </div>
+
+            <div class="savings-display" id="savingsDisplay" aria-live="polite" aria-label="Savings calculations">
+              <div class="savings-row">
+                <div class="savings-model">GPT-4o <span class="price">$2.50/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-gpt4o" style="width:74%"></div></div>
+                <div class="savings-amount" id="amt-gpt4o">—</div>
+              </div>
+              <div class="savings-row">
+                <div class="savings-model">Claude 3.5 <span class="price">$3.36/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-claude" style="width:100%"></div></div>
+                <div class="savings-amount" id="amt-claude">—</div>
+              </div>
+              <div class="savings-row">
+                <div class="savings-model">Gemini 1.5 <span class="price">$1.25/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-gemini" style="width:37%"></div></div>
+                <div class="savings-amount" id="amt-gemini">—</div>
+              </div>
+              <div class="savings-row">
+                <div class="savings-model">Llama 3 70B <span class="price">$0.60/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-llama" style="width:18%"></div></div>
+                <div class="savings-amount" id="amt-llama">—</div>
+              </div>
+              <div class="savings-row">
+                <div class="savings-model">Claude 3 Opus <span class="price">$15.00/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-opus" style="width:60%"></div></div>
+                <div class="savings-amount" id="amt-opus">—</div>
+              </div>
+              <div class="savings-row">
+                <div class="savings-model">GPT-4 <span class="price">$30.00/M</span></div>
+                <div class="savings-bar-wrap"><div class="savings-bar-fill" id="bar-gpt4" style="width:80%"></div></div>
+                <div class="savings-amount" id="amt-gpt4">—</div>
+              </div>
+            </div>
+
+            <div class="payback-card" aria-live="polite">
+              <div>
+                <div class="payback-label">Annual plan cost recovered in</div>
+                <div class="payback-value" id="paybackDays">— days</div>
+                <div class="payback-sub" id="paybackSub">Configure above to calculate</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:11px; color:var(--c-text-muted); font-family:var(--font-mono);">ANNUAL SAVINGS</div>
+                <div style="font-size:32px; font-weight:700; font-family:var(--font-mono); color:var(--c-green);" id="annualSavings">$0</div>
+                <div style="font-size:11px; color:var(--c-green); opacity:0.7;" id="roiLabel">ROI: —</div>
+              </div>
+            </div>
+
+            <div id="mathBreakdown" style="margin-top:16px; padding:14px 16px; background:rgba(0,0,0,0.5); border:1px solid var(--c-border); border-radius:var(--r-md);">
+              <div style="font-size:10px; font-family:var(--font-mono); color:var(--c-text-muted); letter-spacing:0.1em; margin-bottom:10px;">CALCULATION PROOF</div>
+              <div id="mathLines" style="font-size:12px; font-family:var(--font-mono); color:var(--c-text-secondary); line-height:2;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           PHYSICS GRAVITY SANDBOX
+      ══════════════════════════════════════════ -->
+      <section id="physics-section" class="physics-section" aria-labelledby="physics-heading">
+        <div class="section-header">
+          <div class="section-label">// INTERACTIVE PHYSICS LAYER</div>
+          <h2 class="section-title" id="physics-heading">Invader Physics Sandbox</h2>
+          <p class="section-desc">
+            Enable gravity to watch pixel invaders fall and bounce. Click anywhere for shockwave repulsion.
+          </p>
+        </div>
+
+        <div class="physics-header">
+          <div style="font-size:13px; color:var(--c-text-secondary);">
+            <span id="physicsStatusText">Physics: Inactive</span> ·
+            <span id="particleCount">0 invaders</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-secondary" id="addParticlesBtn" onclick="addParticleBurst()" aria-label="Add invader burst">+ Spawn Invaders</button>
+            <button class="btn btn-secondary" id="clearParticlesBtn" onclick="clearParticles()" aria-label="Clear all invaders">Clear</button>
+            <button class="btn btn-primary" id="togglePhysicsBtn" onclick="togglePhysicsMode()" aria-label="Toggle physics simulation">
+              ⚡ Activate Gravity
+            </button>
+          </div>
+        </div>
+
+        <div class="physics-canvas-wrap">
+          <canvas id="physicsCanvas" aria-label="Interactive physics sandbox with pixel invaders"></canvas>
+          <div class="physics-overlay" id="physicsHint">Click canvas for shockwave · Drag to spawn invaders</div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           PRICING SECTION
+      ══════════════════════════════════════════ -->
+      <section id="pricing-section" class="pricing-section" aria-labelledby="pricing-heading">
+        <div class="section-header">
+          <div class="section-label">// LAUNCH TIERS</div>
+          <h2 class="section-title" id="pricing-heading">Founder Pricing</h2>
+          <p class="section-desc">
+            Lock in launch pricing. Costs fully recovered in under 40 days of active API usage.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card founder" id="founder-card">
+            <div>
+              <div class="pricing-badge">Founder's Pass</div>
+              <div class="pricing-name" style="margin-top:12px;">Individual Vibe Coder</div>
+              <div class="pricing-desc">Unlimited prompt optimizations, local MCP server daemon, and workflow automation for solo developers.</div>
+            </div>
+            <div class="pricing-price-row">
+              <div class="pricing-amount">$89</div>
+              <div class="pricing-period">/ year</div>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">Unlimited prompt compressions</li>
+              <li class="pricing-feature">Local MCP Server daemon (Cursor, Claude Desktop, Windsurf)</li>
+              <li class="pricing-feature">Pass 1 Heuristic Engine</li>
+              <li class="pricing-feature">Pass 2 Shorthand Engine</li>
+              <li class="pricing-feature">Multi-modal optimization (text/image/audio/video)</li>
+              <li class="pricing-feature">API Cost Offset Calculator</li>
+              <li class="pricing-feature">All 6 major model support</li>
+              <li class="pricing-feature">Cost recovered in &lt;40 days*</li>
+            </ul>
+            <button class="btn btn-founder" style="width:100%;justify-content:center;padding:14px;" onclick="handleCheckout('founder')" aria-label="Start Founder Annual Pass for $89 per year">
+              Start Founder Pass — $89/yr
+            </button>
+            <div style="font-size:11px;color:var(--c-text-muted);text-align:center;font-family:var(--font-mono);">*Based on 5,000 calls/day avg usage</div>
+          </div>
+
+          <div class="pricing-card elite" id="elite-card">
+            <div>
+              <div class="pricing-badge">⚡ Elite Agentic</div>
+              <div class="pricing-name" style="margin-top:12px;">Developer Teams</div>
+              <div class="pricing-desc">High-throughput sequential multi-agent SDK pipeline optimization nodes for engineering teams.</div>
+            </div>
+            <div class="pricing-price-row">
+              <div class="pricing-amount">$179</div>
+              <div class="pricing-period">/ year</div>
+            </div>
+            <ul class="pricing-features">
+              <li class="pricing-feature">Everything in Founder's Pass</li>
+              <li class="pricing-feature">Multi-agent SDK pipeline optimization</li>
+              <li class="pricing-feature">High-throughput sequential processing</li>
+              <li class="pricing-feature">Team workspace (up to 10 seats)</li>
+              <li class="pricing-feature">Priority background MCP integration</li>
+              <li class="pricing-feature">Agentic auto-trial validation loop</li>
+              <li class="pricing-feature">Supabase/Prisma backend</li>
+              <li class="pricing-feature">Dedicated Slack support channel</li>
+            </ul>
+            <button class="btn btn-elite" style="width:100%;justify-content:center;padding:14px;" onclick="handleCheckout('elite')" aria-label="Start Elite Agentic Annual plan for $179 per year">
+              Start Elite Annual — $179/yr
+            </button>
+            <div style="font-size:11px;color:var(--c-text-muted);text-align:center;font-family:var(--font-mono);">Best for 10K+ daily API calls</div>
+          </div>
+        </div>
+
+        <div style="max-width:820px;margin:24px auto 0;">
+          <div style="padding:24px 28px;background:rgba(41,151,255,0.05);border:1px solid rgba(41,151,255,0.15);border-radius:var(--r-lg);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <div style="font-size:32px; font-family:var(--font-mono); color:var(--c-accent-1);">$&gt;</div>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;color:var(--c-text-primary);margin-bottom:6px;">The Math Is Simple</div>
+              <div style="font-size:13px;color:var(--c-text-secondary);line-height:1.6;">
+                At 5,000 calls/day with 1,200 avg tokens on GPT-4o: <code style="color:var(--c-accent-1);">5000 × 1200 × 0.47 × ($2.50/1M) = $7.05/day saved</code>.
+                Your $89 Founder pass pays for itself in <strong style="color:var(--c-green);">13 days</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           MCP INTEGRATION SECTION
+      ══════════════════════════════════════════ -->
+      <section style="margin-bottom:64px;" aria-labelledby="mcp-heading">
+        <div class="section-header">
+          <div class="section-label">// MCP SERVER INTEGRATION</div>
+          <h2 class="section-title" id="mcp-heading">Works Inside Your IDE</h2>
+          <p class="section-desc">One config line. Omniken runs as a background daemon inside Cursor, Claude Desktop, and Windsurf.</p>
+        </div>
+
+        <div style="max-width:720px;margin:0 auto;">
+          <div class="card">
+            <div class="pane-label" style="margin-bottom:12px;">
+              <span class="dot"></span> CURSOR / CLAUDE DESKTOP CONFIG
+            </div>
+            <pre style="background:rgba(0,0,0,0.6);border:1px solid var(--c-border);border-radius:var(--r-md);padding:20px;overflow-x:auto;font-size:13px;line-height:1.7;">{
+  "mcpServers": {
+    "omniken-core": {
+      "command": "node",
+      "args": ["<span style='color:var(--c-accent-1)'>./omniken/mcp-server/index.js</span>"],
+      "env": {
+        "OMNIKEN_LICENSE": "<span style='color:var(--c-green)'>YOUR_LICENSE_KEY</span>",
+        "OMNIKEN_COMPRESSION": "47"
+      }
+    }
+  }
+}</pre>
+
+            <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+              <div style="flex:1;padding:14px 16px;background:rgba(0,0,0,0.5);border:1px solid var(--c-border);border-radius:var(--r-sm);">
+                <div style="font-size:10px;font-family:var(--font-mono);color:var(--c-accent-1);letter-spacing:0.1em;margin-bottom:6px;">TOOL: optimize_context_stream</div>
+                <div style="font-size:12px;color:var(--c-text-secondary);">Compress any prompt string on-the-fly via MCP tool call. Returns compressed text + metrics JSON.</div>
+              </div>
+              <div style="flex:1;padding:14px 16px;background:rgba(0,0,0,0.5);border:1px solid var(--c-border);border-radius:var(--r-sm);">
+                <div style="font-size:10px;font-family:var(--font-mono);color:var(--c-accent-2);letter-spacing:0.1em;margin-bottom:6px;">AUTO-TRIAL VALIDATION</div>
+                <div style="font-size:12px;color:var(--c-text-secondary);">Boot loop verifies Cursor, Claude Desktop & Windsurf environments on startup with zero user input.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" role="contentinfo">
+        <div class="footer-brand">♾ Omniken — Zero Context Engine</div>
+        <div class="footer-copy">v1.1.0 · 2025 · Built with precision</div>
+      </footer>
+
+    </div><!-- /app-wrapper -->
+  </div><!-- /desk-top -->
+</div><!-- /desk-scene -->
+
+<!-- Checkout Modal -->
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(16px);align-items:center;justify-content:center;" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div style="background:rgba(22,22,23,0.95);border:1px solid var(--c-border);border-radius:var(--r-xl);padding:40px;max-width:440px;width:90%;box-shadow:0 40px 80px rgba(0,0,0,0.9);">
+    <div style="font-size:24px;font-weight:700;margin-bottom:8px;" id="modal-title">♾ You're In!</div>
+    <div style="font-size:14px;color:var(--c-text-secondary);margin-bottom:24px;" id="modal-desc">Processing your Omniken license...</div>
+    <div id="modal-body"></div>
+    <button class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:20px;" onclick="closeModal()" aria-label="Close checkout modal">Close</button>
+  </div>
+</div>
+
+<script src="physics.js"></script>
+<script src="calculator.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

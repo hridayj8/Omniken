@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Omniken user accounts
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  apiKey    String?  @map("api_key")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  licenses   License[]
+  usageLogs  UsageLog[]
+  apiKeys    ApiKey[]
+
+  @@map("users")
+}
+
+/// License keys for Founder/Elite tiers
+model License {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  tier      String   // "founder" | "elite"
+  status    String   @default("active") // "active" | "expired" | "cancelled"
+  price     Int
+  licenseKey String? @unique @map("license_key")
+  activatedAt DateTime? @map("activated_at")
+  expiresAt   DateTime? @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("licenses")
+}
+
+/// API keys for programmatic access
+model ApiKey {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  keyHash   String   @unique @map("key_hash")
+  label     String?
+  lastUsed  DateTime? @map("last_used")
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("api_keys")
+}
+
+/// Usage tracking for billing
+model UsageLog {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  promptIn  Int      @map("prompt_in")
+  promptOut Int      @map("prompt_out")
+  saved     Int
+  reduction Float
+  model     String   @default("gpt4o")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("usage_logs")
+}
+
+/// Checkout sessions
+model CheckoutSession {
+  id            String   @id @default(cuid())
+  userId        String?  @map("user_id")
+  email         String
+  tier          String   // "founder" | "elite"
+  amount        Int
+  status        String   @default("pending") // "pending" | "completed" | "failed"
+  stripeId      String?  @unique @map("stripe_id")
+  licenseKey    String?  @map("license_key")
+  completedAt   DateTime? @map("completed_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("checkout_sessions")
+}

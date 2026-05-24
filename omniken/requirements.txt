@@ -1,0 +1,26 @@
+# Omniken — Core Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+streamlit>=1.28.0
+tiktoken>=0.5.0
+
+# Database
+supabase>=1.0.0
+prisma>=0.7.0
+
+# Data
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+httpx>=0.25.0
+
+# Optional: PDF/image extraction
+Pillow>=10.0.0
+pypdf2>=3.0.0
+
+# Optional: Audio transcription
+openai-whisper>=20231117
