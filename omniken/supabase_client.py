@@ -85,6 +85,36 @@ def create_license(user_id: str, tier: str, price: int) -> Optional[dict]:
         return {"error": str(e)}
 
 
+def upsert_user(email: str, name: Optional[str] = None) -> Optional[dict]:
+    """Upsert a user by email. Returns user record."""
+    if not client:
+        return {"id": "sandbox", "email": email, "name": name or email.split("@")[0]}
+
+    try:
+        result = client.table("users").upsert({
+            "email": email,
+            "name": name or email.split("@")[0],
+        }, on_conflict="email").execute()
+        return result.data[0] if result.data else None
+    except Exception as e:
+        return {"error": str(e)}
+
+
+def get_license(license_key: str) -> Optional[dict]:
+    """Look up a license by key. Returns license record or None."""
+    if not client:
+        return None
+
+    try:
+        result = client.table("licenses") \
+            .select("*") \
+            .eq("license_key", license_key) \
+            .execute()
+        return result.data[0] if result.data else None
+    except Exception:
+        return None
+
+
 def log_usage(user_id: str, prompt_in: int, prompt_out: int, model: str = "gpt4o",
               input_type: str = "text", context_cache: bool = False,
               cache_hits: int = 0) -> Optional[dict]:
@@ -131,16 +161,37 @@ def get_user_usage(user_id: str) -> dict:
 
 def create_checkout_session(email: str, tier: str) -> Optional[dict]:
     if not client:
-        return {"checkout_url": f"https://omniken.dev/checkout/{tier}", "session_id": "sandbox"}
+        prices = {"founder": 89, "elite": 179}
+        return {
+            "checkout_url": f"https://omniken.dev/checkout/{tier}",
+            "session_id": "sandbox",
+            "amount": prices.get(tier, 89),
+            "tier": tier,
+            "email": email,
+        }
 
     try:
         prices = {"founder": 89, "elite": 179}
+        amount = prices.get(tier, 89)
+
+        # Upsert user first
+        user_res = client.table("users").upsert({
+            "email": email,
+            "name": email.split("@")[0],
+        }, on_conflict="email").execute()
+        user_id = user_res.data[0]["id"] if user_res.data else None
+
+        # Create checkout session
         session = client.table("checkout_sessions").insert({
             "email": email,
             "tier": tier,
-            "amount": prices.get(tier, 89),
+            "amount": amount,
             "status": "pending",
         }).execute()
-        return session.data[0] if session.data else None
+
+        result = session.data[0] if session.data else {}
+        result["checkout_url"] = f"https://omniken.dev/checkout/{tier}"
+        result["user_id"] = user_id
+        return result
     except Exception as e:
         return {"error": str(e)}

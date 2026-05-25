@@ -896,12 +896,19 @@ def render_pricing_tab():
             st.session_state.license_tier = "Founder's Pass"
             if supabase:
                 try:
-                    supabase.table("licenses").insert({
-                        "email": st.session_state.user_email or "anonymous@omniken.dev",
+                    email_current = st.session_state.user_email or "anonymous@omniken.dev"
+                    # Upsert user first
+                    user_res = supabase.table("users").upsert({
+                        "email": email_current,
+                        "name": email_current.split("@")[0],
+                    }, on_conflict="email").execute()
+                    user_id = user_res.data[0]["id"] if user_res.data else None
+                    # Create checkout session
+                    supabase.table("checkout_sessions").insert({
+                        "email": email_current,
                         "tier": "founder",
-                        "price": 89,
+                        "amount": 89,
                         "status": "pending",
-                        "created_at": datetime.utcnow().isoformat(),
                     }).execute()
                 except Exception as e:
                     st.warning(f"Supabase sync: {e}")
@@ -936,12 +943,18 @@ def render_pricing_tab():
             st.session_state.license_tier = "Elite Agentic"
             if supabase:
                 try:
-                    supabase.table("licenses").insert({
-                        "email": st.session_state.user_email or "anonymous@omniken.dev",
+                    email_current = st.session_state.user_email or "anonymous@omniken.dev"
+                    # Upsert user first
+                    user_res = supabase.table("users").upsert({
+                        "email": email_current,
+                        "name": email_current.split("@")[0],
+                    }, on_conflict="email").execute()
+                    # Create checkout session
+                    supabase.table("checkout_sessions").insert({
+                        "email": email_current,
                         "tier": "elite",
-                        "price": 179,
+                        "amount": 179,
                         "status": "pending",
-                        "created_at": datetime.utcnow().isoformat(),
                     }).execute()
                 except Exception as e:
                     st.warning(f"Supabase sync: {e}")

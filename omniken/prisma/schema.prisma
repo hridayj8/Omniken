@@ -9,7 +9,7 @@ datasource db {
 
 /// Omniken user accounts
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @db.Uuid
   email     String   @unique
   name      String?
   apiKey    String?  @map("api_key")
@@ -25,7 +25,7 @@ model User {
 
 /// License keys for Founder/Elite tiers
 model License {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @db.Uuid
   userId    String   @map("user_id")
   tier      String   // "founder" | "elite"
   status    String   @default("active") // "active" | "expired" | "cancelled"
@@ -42,7 +42,7 @@ model License {
 
 /// API keys for programmatic access
 model ApiKey {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @db.Uuid
   userId    String   @map("user_id")
   keyHash   String   @unique @map("key_hash")
   label     String?
@@ -57,14 +57,17 @@ model ApiKey {
 
 /// Usage tracking for billing
 model UsageLog {
-  id        String   @id @default(cuid())
-  userId    String   @map("user_id")
-  promptIn  Int      @map("prompt_in")
-  promptOut Int      @map("prompt_out")
-  saved     Int
-  reduction Float
-  model     String   @default("gpt4o")
-  createdAt DateTime @default(now()) @map("created_at")
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id")
+  promptIn    Int      @map("prompt_in")
+  promptOut   Int      @map("prompt_out")
+  saved       Int
+  reduction   Float
+  model       String   @default("gpt4o")
+  inputType   String   @default("text") @map("input_type")
+  contextCache Boolean @default(false) @map("context_cache")
+  cacheHits   Int      @default(0) @map("cache_hits")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   user User @relation(fields: [userId], references: [id])
 
@@ -73,7 +76,7 @@ model UsageLog {
 
 /// Checkout sessions
 model CheckoutSession {
-  id            String   @id @default(cuid())
+  id            String   @id @default(uuid()) @db.Uuid
   userId        String?  @map("user_id")
   email         String
   tier          String   // "founder" | "elite"

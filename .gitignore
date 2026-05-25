@@ -5,3 +5,19 @@
 node_modules/
 inspo
 triage/
+
+# Environment files (secrets)
+.env
+.env.local
+.env.production
+.env.development
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+*.egg
+
+# Supabase local
+supabase/.temp/
