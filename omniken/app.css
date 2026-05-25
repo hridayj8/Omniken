@@ -59,8 +59,8 @@ body::before {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0,0,0,0.06) 2px,
-    rgba(0,0,0,0.06) 4px
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
   );
   pointer-events: none;
   z-index: 9998;
@@ -70,65 +70,61 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 40%, rgba(0,0,0,0.7) 100%);
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, rgba(0,0,0,0.25) 100%);
   pointer-events: none;
   z-index: 9997;
 }
 
 .desk-scene {
-  perspective: 1200px;
-  perspective-origin: 50% 0%;
   min-height: 100vh;
-  overflow: hidden;
   position: relative;
   background: #000;
 }
 
 .desk-top {
-  transform: rotateX(4deg);
-  transform-origin: top center;
   min-height: 100vh;
   position: relative;
   background:
-    radial-gradient(ellipse 120% 30% at 50% 0%, rgba(30,30,40,0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 30% at 50% 0%, rgba(30,30,50,0.3) 0%, transparent 70%),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 80px,
-      rgba(40,40,50,0.03) 80px,
-      rgba(40,40,50,0.03) 81px
+      rgba(60,60,80,0.04) 80px,
+      rgba(60,60,80,0.04) 81px
     ),
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 80px,
-      rgba(40,40,50,0.03) 80px,
-      rgba(40,40,50,0.03) 81px
+      rgba(60,60,80,0.04) 80px,
+      rgba(60,60,80,0.04) 81px
     ),
     linear-gradient(
       180deg,
-      #0c0c0e 0%,
-      #0e0e10 20%,
-      #0f0f12 40%,
-      #0d0d0f 60%,
-      #0b0b0d 80%,
-      #08080a 100%
+      #0d0d12 0%,
+      #101015 20%,
+      #111118 40%,
+      #0e0e13 60%,
+      #0c0c10 80%,
+      #09090d 100%
     );
   padding-bottom: 40px;
 }
 
 .desk-lamp {
   position: fixed;
-  top: -120px;
-  right: -120px;
-  width: 700px;
-  height: 700px;
+  top: -200px;
+  right: -100px;
+  width: 900px;
+  height: 900px;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(41, 151, 255, 0.08) 0%,
-    rgba(41, 151, 255, 0.04) 30%,
-    rgba(41, 151, 255, 0.01) 55%,
-    transparent 70%
+    rgba(41, 151, 255, 0.18) 0%,
+    rgba(41, 151, 255, 0.08) 20%,
+    rgba(41, 151, 255, 0.03) 40%,
+    rgba(100, 210, 255, 0.01) 60%,
+    transparent 75%
   );
   pointer-events: none;
   z-index: 1;
@@ -137,18 +133,18 @@ body::after {
 .desk-lamp::after {
   content: '';
   position: absolute;
-  top: 140px;
-  right: 140px;
-  width: 160px;
-  height: 160px;
+  top: 160px;
+  right: 120px;
+  width: 200px;
+  height: 200px;
   background: radial-gradient(
     circle,
-    rgba(100, 210, 255, 0.15) 0%,
-    rgba(41, 151, 255, 0.05) 40%,
+    rgba(100, 210, 255, 0.35) 0%,
+    rgba(41, 151, 255, 0.15) 30%,
     transparent 70%
   );
   border-radius: 50%;
-  filter: blur(30px);
+  filter: blur(40px);
 }
 
 #bgCanvas {
@@ -158,32 +154,30 @@ body::after {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .app-wrapper {
   position: relative;
   z-index: 2;
-  max-width: 1440px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 24px 80px;
+  padding: 0 32px 80px;
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 20px 32px;
   border-bottom: 1px solid var(--c-border);
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.88);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  margin: 0 -24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  margin: 0 -32px;
 }
 
 .nav-brand { display: flex; align-items: center; gap: 10px; }
