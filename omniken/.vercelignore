@@ -1,0 +1,13 @@
+# Backend files — deployed separately on Streamlit Cloud
+app.py
+requirements.txt
+supabase_client.py
+prisma/
+mcp-server/
+
+# Local env — use Vercel Dashboard for env vars
+.env
+.env.example
+
+# Docs / misc
+*.md
