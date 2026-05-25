@@ -1,9 +1,10 @@
 {
   "name": "omniken",
   "version": 2,
-  "buildCommand": null,
+  "buildCommand": "",
   "outputDirectory": ".",
   "framework": null,
+  "installCommand": "",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
@@ -20,9 +21,5 @@
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
-  ],
-  "env": {
-    "OMNIKEN_ENV": "production",
-    "OMNIKEN_DEFAULT_COMPRESSION": "47"
-  }
+  ]
 }
