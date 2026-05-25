@@ -8,6 +8,10 @@ import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
+# Auto-load .env from project root
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://nhkscsynarfbwgfcrgva.supabase.co")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
 DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@db.ppbepczquphfpmxfelyk.supabase.co:5432/postgres")
