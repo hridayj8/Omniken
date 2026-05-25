@@ -17,6 +17,10 @@ from typing import Optional
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
 
+# Auto-load .env from project root
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
+
 # ── Page config ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Omniken — The Infinite Zero Engine",
