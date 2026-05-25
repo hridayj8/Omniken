@@ -1,0 +1,43 @@
+[project]
+name = "omniken"
+ref = "nhkscsynarfbwgfcrgva"
+plan = "free"
+
+[api]
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public"]
+max_request_size = 5000000
+
+[db]
+port = 54322
+major_version = 15
+
+[db.pooler]
+enabled = true
+pool_mode = "transaction"
+default_pool_size = 10
+max_client_connection = 100
+
+[auth]
+enabled = true
+sessions = true
+smtp = false
+enable_signup = true
+email_confirm_required = false
+password_min_length = 8
+
+[edge_functions]
+enabled = false
+
+[analytics]
+enabled = true
+vector = false
+logs = "supabase"
+
+[storage]
+enabled = true
+file_size_limit = 52428800
+
+[realtime]
+enabled = true

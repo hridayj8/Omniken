@@ -8,9 +8,9 @@ import secrets
 from datetime import datetime, timedelta
 from typing import Optional
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://nhkscsynarfbwgfcrgva.supabase.co")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
-DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/omniken")
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@db.ppbepczquphfpmxfelyk.supabase.co:5432/postgres")
 
 try:
     from supabase import create_client, Client
@@ -85,21 +85,27 @@ def create_license(user_id: str, tier: str, price: int) -> Optional[dict]:
         return {"error": str(e)}
 
 
-def log_usage(user_id: str, prompt_in: int, prompt_out: int, model: str = "gpt4o") -> Optional[dict]:
+def log_usage(user_id: str, prompt_in: int, prompt_out: int, model: str = "gpt4o",
+              input_type: str = "text", context_cache: bool = False,
+              cache_hits: int = 0) -> Optional[dict]:
     if not client:
         return {"logged": True}
 
     try:
         saved = max(0, prompt_in - prompt_out)
         reduction = (saved / prompt_in * 100) if prompt_in > 0 else 0
-        result = client.table("usage_logs").insert({
+        payload = {
             "user_id": user_id,
             "prompt_in": prompt_in,
             "prompt_out": prompt_out,
             "saved": saved,
             "reduction": round(reduction, 1),
             "model": model,
-        }).execute()
+            "input_type": input_type,
+            "context_cache": context_cache,
+            "cache_hits": cache_hits,
+        }
+        result = client.table("usage_logs").insert(payload).execute()
         return result.data[0] if result.data else None
     except Exception as e:
         return {"error": str(e)}
