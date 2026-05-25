@@ -1,0 +1,13 @@
+{
+  "name": "omniken-web",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Omniken — The Infinite Zero Context Engine (Web Frontend)",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": ""
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}
