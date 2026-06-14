@@ -1,4 +1,16 @@
 {
+  "name": "omniken",
+  "version": "1.1.0",
+  "description": "Omniken — The Infinite Zero Context Engine",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "license": "MIT"
   "name": "omniken-web",
   "version": "1.1.0",
   "private": true,
